@@ -22,19 +22,26 @@ text = ("GEHT WÄHLEN. #btw21"
 
 def main():
     try:
-        """api.verify_credentials()
-        last_tweet = api.home_timeline(count=1)[0]
+        api.verify_credentials()
+        """last_tweet = api.home_timeline(count=1)[0]
         print(last_tweet.user.name)
         print(last_tweet.text)"""
+        last_trends = api.get_place_trends(id="23424829")
+        # print(type(last_trends[0]))
+        # print(json.dumps(last_trends))
+        # print(type(json.dumps(last_trends)))
+        # print_json(json.dumps(last_trends))
+        for element in last_trends[0]["trends"]:
+            print(element["name"])
 
-        doc = nlp(text)
+        """doc = nlp(text)
         # Analyze syntax
         print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
         print("Verbs:", [token.lemma_ for token in doc if token.pos_ == "VERB"])
 
         # Find named entities, phrases and concepts
         for entity in doc.ents:
-            print(entity.text, entity.label_)
+            print(entity.text, entity.label_)"""
 
     except tweepy.TooManyRequests:
         print(tweepy.TooManyRequests.response)
